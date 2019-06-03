@@ -42,7 +42,7 @@ if [ ! -f ${SERVER_DIR}/games/openttd ]; then
         rm -R $TAR
 		rm $TAR.tar
         GFX="$(find ${SERVER_DIR}/games/baseset -maxdepth 1 -name *grf)"
-        if [ "$GFX" = "" ]; then
+        if [ -z "$GFX" ]; then
         	echo "---Something went wrong, couldn't install OpenGFX---"
             sleep infinity
         fi
@@ -99,7 +99,7 @@ if [ "${GAME_VERSION}" != "$CUR_V" ]; then
         rm -R $TAR
 		rm $TAR.tar
         GFX="$(find ${SERVER_DIR}/games/baseset -maxdepth 1 -name *grf)"
-        if [ "$GFX" = "" ]; then
+        if [ -z "$GFX" ]; then
         	echo "---Something went wrong, couldn't install OpenGFX---"
             sleep infinity
         fi

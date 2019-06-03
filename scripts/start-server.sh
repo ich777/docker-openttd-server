@@ -41,7 +41,7 @@ if [ ! -f ${SERVER_DIR}/games/openttd ]; then
 		rm ${GFXPACK_URL##*/}
         rm -R $TAR
 		rm $TAR.tar
-        GFX="$(find ${SERVER_DIR}/games/baseset -maxdepth 1 -name *grf)"
+        GFX="$(find ${SERVER_DIR}/games/baseset -maxdepth 1 -name '*grf')"
         if [ -z "$GFX" ]; then
         	echo "---Something went wrong, couldn't install OpenGFX---"
             sleep infinity
@@ -98,7 +98,7 @@ if [ "${GAME_VERSION}" != "$CUR_V" ]; then
 		rm ${GFXPACK_URL##*/}
         rm -R $TAR
 		rm $TAR.tar
-        GFX="$(find ${SERVER_DIR}/games/baseset -maxdepth 1 -name *grf)"
+        GFX="$(find ${SERVER_DIR}/games/baseset -maxdepth 1 -name '*grf')"
         if [ -z "$GFX" ]; then
         	echo "---Something went wrong, couldn't install OpenGFX---"
             sleep infinity
@@ -106,6 +106,28 @@ if [ "${GAME_VERSION}" != "$CUR_V" ]; then
 	else
     	echo "---OpenGFX found---"
     fi
+fi
+
+if [ ! -d ${SERVER_DIR}/games/baseset ]; then
+	echo "---OpenGFX not found, downloading...---"
+    cd ${SERVER_DIR}/games
+    mkdir baseset
+    cd ${SERVER_DIR}/games/baseset
+    wget -q ${GFXPACK_URL}
+	unzip ${GFXPACK_URL##*/}
+	TAR="$( echo "${GFXPACK_URL##*/}" | rev | cut -d "." -f2- | rev)"
+	tar -xf $TAR.tar
+    mv ${SERVER_DIR}/games/baseset/${TAR}/* ${SERVER_DIR}/games/baseset
+	rm ${GFXPACK_URL##*/}
+    rm -R $TAR
+	rm $TAR.tar
+    GFX="$(find ${SERVER_DIR}/games/baseset -maxdepth 1 -name '*grf')"
+    if [ -z "$GFX" ]; then
+    	echo "---Something went wrong, couldn't install OpenGFX---"
+        sleep infinity
+    fi
+else
+	echo "---OpenGFX found---"
 fi
 
 echo "---Prepare Server---"

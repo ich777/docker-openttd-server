@@ -65,7 +65,7 @@ if [ "${GAME_VERSION}" != "$CUR_V" ]; then
     cd ${SERVER_DIR}
     rm installed_v_$CUR_V
     rm -R games
-    rm -R shared
+    rm -R share
     wget -qO installed_v_${GAME_VERSION} https://github.com/OpenTTD/OpenTTD/archive/${GAME_VERSION}.zip
 	unzip -d ${SERVER_DIR}/compileopenttd installed_v_${GAME_VERSION}
 	COMPVDIR="$(find ${SERVER_DIR}/compileopenttd -name Open* -print -quit)"

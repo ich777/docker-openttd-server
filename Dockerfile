@@ -8,7 +8,7 @@ RUN apt-get -y install wget unzip
 ENV DATA_DIR="/serverdata"
 ENV SERVER_DIR="${DATA_DIR}/serverfiles"
 ENV GAME_PARAMS="template"
-ENV GAME_PORT=22003
+ENV GAME_PORT=3979
 ENV GAME_VERSION="latest"
 ENV UID=99
 ENV GID=100

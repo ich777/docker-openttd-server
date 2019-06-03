@@ -15,7 +15,7 @@ ENV GID=100
 
 RUN mkdir $DATA_DIR
 RUN mkdir $SERVER_DIR
-RUN useradd -d $DATA_DIR -s /bin/bash --uid $UID --gid $GID openTTD
+RUN useradd -d $SERVER_DIR -s /bin/bash --uid $UID --gid $GID openTTD
 RUN chown -R openTTD $DATA_DIR
 
 RUN ulimit -n 2048

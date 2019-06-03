@@ -106,6 +106,8 @@ if [ "${GAME_VERSION}" != "$CUR_V" ]; then
 	else
     	echo "---OpenGFX found---"
     fi
+else
+	echo "---OpenTTD v$LAT_V found---"
 fi
 
 if [ ! -d ${SERVER_DIR}/games/baseset ]; then

@@ -3,7 +3,7 @@ FROM ubuntu
 MAINTAINER ich777
 
 RUN apt-get update
-RUN apt-get -y install wget unzip screen
+RUN apt-get -y install wget unzip liblzma-dev build-essential libsdl1.2-dev zlib1g-dev liblzo2-dev timidity dpatch libfontconfig-dev libicu-dev screen
 
 ENV DATA_DIR="/serverdata"
 ENV SERVER_DIR="${DATA_DIR}/serverfiles"

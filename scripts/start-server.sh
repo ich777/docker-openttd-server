@@ -73,8 +73,8 @@ CUR_V="$(find ${SERVER_DIR} -name installed_v_* | cut -d "_" -f3)"
 if [ "$INSTALL_V" != "$CUR_V" ]; then
 	echo
     echo "-------------------------------------------------"
-	echo "---Version missmatch, installing newer Version---"
-	echo "------Updating from v$CUR_V to v$INSTALL_V------"
+	echo "---Version missmatch, installing v$INSTALL_V----------"
+	echo "------Changing from v$CUR_V to v$INSTALL_V-------------"
     echo "----Please be patient this can take some time----"
     echo "---------------Waiting 15 seconds----------------"
     echo "-------------------------------------------------"

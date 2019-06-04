@@ -1,16 +1,33 @@
 #!/bin/bash
+if [ "${GAME_VERSION}" = "latest" ]; then
+	echo "---Getting latest OpenTTD build version...---"
+    LAT_V="$(curl -s https://api.github.com/repos/OpenTTD/OpenTTD/releases/latest | grep tag_name | cut -d '"' -f4)"
+    echo "---Latest OpenTTD build version is: $LAT_V---"
+    INSTALL_V=$LAT_V
+    if [ -z $LAT_V ]; then
+    	echo "---Something went wrong, couldn't get latest build version---"
+        sleep infinity
+    fi
+else
+	INSTALL_V=${GAME_VERSION}
+fi
+
 if [ ! -f ${SERVER_DIR}/games/openttd ]; then
 	echo
     echo "-------------------------------------"
 	echo "---OpenTTD not found! Downloading,---"
-    echo "---compiling and installing v${GAME_VERSION}---"
+    echo "---compiling and installing v$INSTALL_V---"
     echo "---Please be patient, this can take--"
     echo "---some time, waiting 15 seconds..---"
     echo "-------------------------------------"
     sleep 15
     cd ${SERVER_DIR}
-    wget -qO installed_v_${GAME_VERSION} https://github.com/OpenTTD/OpenTTD/archive/${GAME_VERSION}.zip
-	unzip -d ${SERVER_DIR}/compileopenttd installed_v_${GAME_VERSION}
+    if [ "${GAME_VERSION}" = "latest" ]; then
+    	wget -qO installed_v_$INSTALL_V https://proxy.binaries.openttd.org/openttd-releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz
+    else
+    	wget -qO installed_v_$INSTALL_V http://master.binaries.openttd.org/binaries/releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz
+    fi
+	tar -xf -d ${SERVER_DIR}/compileopenttd installed_v_$INSTALL_V
 	COMPVDIR="$(find ${SERVER_DIR}/compileopenttd -name Open* -print -quit)"
 	cd $COMPVDIR
 	$COMPVDIR/configure --prefix-dir=/serverdata/serverfiles --enable-dedicated --personal-dir=/serverfiles/openttd
@@ -23,10 +40,10 @@ if [ ! -f ${SERVER_DIR}/games/openttd ]; then
 	make install
 	rm -R ${SERVER_DIR}/compileopenttd
 	if [ ! -f ${SERVER_DIR}/games/openttd ]; then 
-		echo "---Something went wrong, couldn't install OpenTTD v${GAME_VERSION}---"
+		echo "---Something went wrong, couldn't install OpenTTD v$INSTALL_V---"
         sleep infinity
     else
-    	echo "---OpenTTD v${GAME_VERSION} installed---"
+    	echo "---OpenTTD v$INSTALL_V installed---"
     fi
     if [ ! -d ${SERVER_DIR}/games/baseset ]; then
     	echo "---OpenGFX not found, downloading...---"
@@ -52,11 +69,11 @@ if [ ! -f ${SERVER_DIR}/games/openttd ]; then
 fi
 
 CUR_V="$(find ${SERVER_DIR} -name installed_v_* | cut -d "_" -f3)"
-if [ "${GAME_VERSION}" != "$CUR_V" ]; then
+if [ "$INSTALL_V" != "$CUR_V" ]; then
 	echo
     echo "-------------------------------------------------"
 	echo "---Version missmatch, installing newer Version---"
-	echo "------Updating from v$CUR_V to v${GAME_VERSION}------"
+	echo "------Updating from v$CUR_V to v$INSTALL_V------"
     echo "----Please be patient this can take some time----"
     echo "---------------Waiting 15 seconds----------------"
     echo "-------------------------------------------------"
@@ -66,8 +83,12 @@ if [ "${GAME_VERSION}" != "$CUR_V" ]; then
     rm installed_v_$CUR_V
     rm -R games
     rm -R share
-    wget -qO installed_v_${GAME_VERSION} https://github.com/OpenTTD/OpenTTD/archive/${GAME_VERSION}.zip
-	unzip -d ${SERVER_DIR}/compileopenttd installed_v_${GAME_VERSION}
+    if [ "${GAME_VERSION}" = "latest" ]; then
+    	wget -qO installed_v_$INSTALL_V https://proxy.binaries.openttd.org/openttd-releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz
+    else
+    	wget -qO installed_v_$INSTALL_V http://master.binaries.openttd.org/binaries/releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz
+    fi
+	tar -xf -d ${SERVER_DIR}/compileopenttd installed_v_$INSTALL_V
 	COMPVDIR="$(find ${SERVER_DIR}/compileopenttd -name Open* -print -quit)"
 	cd $COMPVDIR
 	$COMPVDIR/configure --prefix-dir=/serverdata/serverfiles --enable-dedicated --personal-dir=/serverfiles/openttd
@@ -80,10 +101,10 @@ if [ "${GAME_VERSION}" != "$CUR_V" ]; then
 	make install
 	rm -R ${SERVER_DIR}/compileopenttd
 	if [ ! -f ${SERVER_DIR}/games/openttd ]; then 
-		echo "---Something went wrong, couldn't install OpenTTD v${GAME_VERSION}---"
+		echo "---Something went wrong, couldn't install OpenTTD v$INSTALL_V---"
         sleep infinity
     else
-    	echo "---OpenTTD v${GAME_VERSION} installed---"
+    	echo "---OpenTTD v$INSTALL_V installed---"
     fi
     if [ ! -d ${SERVER_DIR}/games/baseset ]; then
     	echo "---OpenGFX not found, downloading...---"

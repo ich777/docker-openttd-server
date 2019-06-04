@@ -27,7 +27,7 @@ if [ ! -f ${SERVER_DIR}/games/openttd ]; then
     else
     	wget -qO installed_v_$INSTALL_V http://master.binaries.openttd.org/binaries/releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz
     fi
-	tar -xf -d ${SERVER_DIR}/compileopenttd installed_v_$INSTALL_V
+	tar -xf ${SERVER_DIR}/compileopenttd installed_v_$INSTALL_V
 	COMPVDIR="$(find ${SERVER_DIR}/compileopenttd -name Open* -print -quit)"
 	cd $COMPVDIR
 	$COMPVDIR/configure --prefix-dir=/serverdata/serverfiles --enable-dedicated --personal-dir=/serverfiles/openttd
@@ -88,7 +88,7 @@ if [ "$INSTALL_V" != "$CUR_V" ]; then
     else
     	wget -qO installed_v_$INSTALL_V http://master.binaries.openttd.org/binaries/releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz
     fi
-	tar -xf -d ${SERVER_DIR}/compileopenttd installed_v_$INSTALL_V
+	tar -xf ${SERVER_DIR}/compileopenttd installed_v_$INSTALL_V
 	COMPVDIR="$(find ${SERVER_DIR}/compileopenttd -name Open* -print -quit)"
 	cd $COMPVDIR
 	$COMPVDIR/configure --prefix-dir=/serverdata/serverfiles --enable-dedicated --personal-dir=/serverfiles/openttd

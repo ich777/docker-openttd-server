@@ -25,6 +25,7 @@ Update Notice: If there is a newer version if set to 'latest' simply restart the
 
 # Run example
 
+```
 docker run --name OpenTTD -d \
     -p 3979:3979/tcp \
     -p 3979:3979/udp \
@@ -37,6 +38,7 @@ docker run --name OpenTTD -d \
     --volume /mnt/user/appdata/openttd:/serverdata/serverfiles \
     --restart=unless-stopped \
     ich777/openttdserver:latest
+```
 
 This Docker was mainly created for the use with Unraid, if you don’t use Unraid you should definitely try it!
 

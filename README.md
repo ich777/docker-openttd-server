@@ -3,10 +3,9 @@
 This Docker will download and install the version of OpenTTD that you enter in the variable 'GAME_VERSION' (if you define 'latest' it will always pull the latest build).
 
 
-*** CONSOLE: If you want to connect to the console open a Terminal and type in 'screen -xS OpenTTD' (without quotes).
-
+***CONSOLE: If you want to connect to the console open a Terminal and type in 'screen -xS OpenTTD' (without quotes).
 Compile Note: Assigning fewer cores for compiling will result in slower startup on the first start up and updates, RECOMMENDED: leave the 'Compile Cores' blank to use all available cores).
-Update Notice: If there is a newer version if set to 'latest' simply restart the container to update it to the latest version. If you want to update from an older build simply set the new build number or set to latest. You can also downgrade to another version.
+Update Notice: If there is a newer version if set to 'latest' simply restart the container to update it to the latest version. If you want to update from an older build simply set the new build number or set to latest. You can also downgrade to another version.***
 
 
 ## Env params

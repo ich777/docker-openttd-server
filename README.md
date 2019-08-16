@@ -12,7 +12,7 @@ Update Notice: If there is a newer version if set to 'latest' simply restart the
 
 | Name | Value | Example |
 | --- | --- | --- |
-| SERVER_DIR | Folder for gamefile | /serverdata/serverfiles |
+| SERVER_DIR | Folder for gamefiles | /serverdata/serverfiles |
 | GAME_PARAMS | Commandline startup parameters | [empty] |
 | GAME_VERSION | Preferred game version | latest |
 | GFXPACK_URL | GFX Pack URL | http://bundles.openttdcoop.org/opengfx/releases/0.5.5/opengfx-0.5.5.zip |

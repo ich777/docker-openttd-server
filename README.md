@@ -19,7 +19,7 @@ Update Notice: If there is a newer version if set to 'latest' simply restart the
 | GID | Group Identifier | 100 |
 | GAME_PORT | Port the server will be running on | 11753 |
 
-#### To load the last autosavegame you MUST specifie the following '-D -g /serverdata/serverfiles/openttd/save/autosave/autosave0.sav' you can also customize the path but it begins always with '/serverdata/serverfiles/'
+##### To load the last autosavegame you MUST specifie the following '-D -g /serverdata/serverfiles/openttd/save/autosave/autosave0.sav' you can also customize the path but it begins always with '/serverdata/serverfiles/'
 
 # Run example
 

@@ -26,9 +26,19 @@ if [ ! -f ${SERVER_DIR}/games/openttd ]; then
     sleep 15
     cd ${SERVER_DIR}
     if [ "${GAME_VERSION}" = "latest" ]; then
-    	wget -qO installed_v_$INSTALL_V https://proxy.binaries.openttd.org/openttd-releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz
+    	if wget -q -nc --show-progress --progress=bar:force:noscroll -O installed_v_$INSTALL_V https://proxy.binaries.openttd.org/openttd-releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz ; then
+        	echo "---Successfully downloaded OpenTTD v$INSTALL_V---"
+		else
+        	echo "---Can't download OpenTTD v$INSTALL_V putting server into sleep mode---"
+            sleep infinity
+		fi
     else
-    	wget -qO installed_v_$INSTALL_V http://master.binaries.openttd.org/binaries/releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz
+    	if wget -q -nc --show-progress --progress=bar:force:noscroll -O installed_v_$INSTALL_V http://master.binaries.openttd.org/binaries/releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz ; then
+          	echo "---Successfully downloaded OpenTTD v$INSTALL_V---"
+		else
+        	echo "---Can't download OpenTTD v$INSTALL_V putting server into sleep mode---"
+            sleep infinity
+		fi
     fi
     mkdir compileopenttd
 	tar -xf installed_v_$INSTALL_V -C ${SERVER_DIR}/compileopenttd/
@@ -54,7 +64,12 @@ if [ ! -f ${SERVER_DIR}/games/openttd ]; then
         cd ${SERVER_DIR}/games
         mkdir baseset
         cd ${SERVER_DIR}/games/baseset
-        wget -q ${GFXPACK_URL}
+        if wget -q -nc --show-progress --progress=bar:force:noscroll ${GFXPACK_URL} ; then
+        	echo "---Successfully downloaded OpenGFX---"
+		else
+        	echo "---Can't download OpenGFX putting server into sleep mode---"
+            sleep infinity
+		fi
 		unzip ${GFXPACK_URL##*/}
 		TAR="$( echo "${GFXPACK_URL##*/}" | rev | cut -d "." -f2- | rev)"
 		tar -xf $TAR.tar
@@ -88,9 +103,19 @@ if [ "$INSTALL_V" != "$CUR_V" ]; then
     rm -R games
     rm -R share
     if [ "${GAME_VERSION}" = "latest" ]; then
-    	wget -qO installed_v_$INSTALL_V https://proxy.binaries.openttd.org/openttd-releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz
+    	if wget -q -nc --show-progress --progress=bar:force:noscroll -O installed_v_$INSTALL_V https://proxy.binaries.openttd.org/openttd-releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz ; then
+        	echo "---Successfully downloaded OpenTTD v$INSTALL_V---"
+		else
+        	echo "---Can't download OpenTTD v$INSTALL_V putting server into sleep mode---"
+            sleep infinity
+		fi
     else
-    	wget -qO installed_v_$INSTALL_V http://master.binaries.openttd.org/binaries/releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz
+    	if wget -q -nc --show-progress --progress=bar:force:noscroll -O installed_v_$INSTALL_V http://master.binaries.openttd.org/binaries/releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz ; then
+          	echo "---Successfully downloaded OpenTTD v$INSTALL_V---"
+		else
+        	echo "---Can't download OpenTTD v$INSTALL_V putting server into sleep mode---"
+            sleep infinity
+		fi
     fi
 	mkdir compileopenttd
 	tar -xf installed_v_$INSTALL_V -C ${SERVER_DIR}/compileopenttd/
@@ -116,7 +141,12 @@ if [ "$INSTALL_V" != "$CUR_V" ]; then
         cd ${SERVER_DIR}/games
         mkdir baseset
         cd ${SERVER_DIR}/games/baseset
-        wget -q ${GFXPACK_URL}
+        if wget -q -nc --show-progress --progress=bar:force:noscroll ${GFXPACK_URL} ; then
+        	echo "---Successfully downloaded OpenGFX---"
+		else
+        	echo "---Can't download OpenGFX putting server into sleep mode---"
+            sleep infinity
+		fi
 		unzip ${GFXPACK_URL##*/}
 		TAR="$( echo "${GFXPACK_URL##*/}" | rev | cut -d "." -f2- | rev)"
 		tar -xf $TAR.tar
@@ -141,7 +171,12 @@ if [ ! -d ${SERVER_DIR}/games/baseset ]; then
     cd ${SERVER_DIR}/games
     mkdir baseset
     cd ${SERVER_DIR}/games/baseset
-    wget -q ${GFXPACK_URL}
+	if wget -q -nc --show-progress --progress=bar:force:noscroll ${GFXPACK_URL} ; then
+		echo "---Successfully downloaded OpenGFX---"
+	else
+		echo "---Can't download OpenGFX putting server into sleep mode---"
+		sleep infinity
+	fi
 	unzip ${GFXPACK_URL##*/}
 	TAR="$( echo "${GFXPACK_URL##*/}" | rev | cut -d "." -f2- | rev)"
 	tar -xf $TAR.tar

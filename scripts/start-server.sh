@@ -1,7 +1,4 @@
 #!/bin/bash
-echo "---Setting umask to ${UMASK}---"
-umask ${UMASK}
-
 if [ "${GAME_VERSION}" = "latest" ]; then
 	echo "---Getting latest OpenTTD build version...---"
     LAT_V="$(curl -s https://api.github.com/repos/OpenTTD/OpenTTD/releases/latest | grep tag_name | cut -d '"' -f4)"
@@ -194,7 +191,7 @@ else
 fi
 
 echo "---Prepare Server---"
-chmod -R 777 ${DATA_DIR}
+chmod -R ${DATA_PERM} ${DATA_DIR}
 echo "---Checking for old logs---"
 find ${SERVER_DIR} -name "masterLog.*" -exec rm -f {} \;
 echo "---Server ready---"

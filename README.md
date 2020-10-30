@@ -15,7 +15,7 @@ Update Notice: If there is a newer version if set to 'latest' simply restart the
 | SERVER_DIR | Folder for gamefiles | /serverdata/serverfiles |
 | GAME_PARAMS | Commandline startup parameters | [empty] |
 | GAME_VERSION | Preferred game version | latest |
-| GFXPACK_URL | GFX Pack URL | http://bundles.openttdcoop.org/opengfx/releases/0.5.5/opengfx-0.5.5.zip |
+| GFX_PK_V | Preferred GFX Version | latest |
 | COMPILE_CORES | Compile cores to use | [empty] |
 | UID | User Identifier | 99 |
 | GID | Group Identifier | 100 |
@@ -31,7 +31,7 @@ docker run --name OpenTTD -d \
     -p 3979:3979/udp \
     --env 'GAME_PARAMS=' \
     --env 'GAME_VERSION=latest' \
-    --env 'GFXPACK_URL=http://bundles.openttdcoop.org/opengfx/releases/0.5.5/opengfx-0.5.5.zip' \
+    --env 'GFX_PK_V=latest' \
     --env 'COMPILE_CORES=' \
     --env 'UID=99' \
     --env 'GID=100' \

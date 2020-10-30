@@ -18,7 +18,7 @@ else
 	INSTALL_V=${GAME_VERSION}
 fi
 
-GFX_PK_CUR_V="$(cat ${SERVER_DIR}/games/baseset/changelog.txt 2& >/dev/null | head -1 | cut -d ' ' -f2)"
+GFX_PK_CUR_V="$(cat ${SERVER_DIR}/games/baseset/changelog.txt 2>/dev/null | head -1 | cut -d ' ' -f2)"
 if [ "${GFX_PK_V}" = "latest" ]; then
 	echo "---Getting latest OpenGFX version...---"
 	GFX_PK_V="$(curl -s https://cdn.openttd.org/opengfx-releases/latest.yaml | grep "version:" | cut -d ' ' -f3)"

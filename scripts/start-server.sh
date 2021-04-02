@@ -56,8 +56,9 @@ if [ ! -f ${SERVER_DIR}/games/openttd ]; then
 	mkdir compileopenttd
 	tar -xf installed_v_$INSTALL_V -C ${SERVER_DIR}/compileopenttd/
 	COMPVDIR="$(find ${SERVER_DIR}/compileopenttd -name open* -print -quit)"
-	cd $COMPVDIR
-	$COMPVDIR/configure --prefix-dir=/serverdata/serverfiles --enable-dedicated --personal-dir=/serverfiles/openttd
+	mkdir $COMPVDIR/build
+	cd $COMPVDIR/build
+	cmake -DCMAKE_INSTALL_PREFIX:PATH=${SERVER_DIR} ..
 	if [ ! -z "${COMPILE_CORES}" ]; then
 		CORES_AVAILABLE=${COMPILE_CORES}
 	else
@@ -95,8 +96,9 @@ elif [ "$INSTALL_V" != "$CUR_V" ]; then
 	mkdir compileopenttd
 	tar -xf installed_v_$INSTALL_V -C ${SERVER_DIR}/compileopenttd/
 	COMPVDIR="$(find ${SERVER_DIR}/compileopenttd -name openttd-* -print -quit)"
-	cd $COMPVDIR
-	$COMPVDIR/configure --prefix-dir=/serverdata/serverfiles --enable-dedicated --personal-dir=/serverfiles/openttd
+	mkdir $COMPVDIR/build
+	cd $COMPVDIR/build
+	cmake -DCMAKE_INSTALL_PREFIX:PATH=${SERVER_DIR} ..
 	if [ ! -z "${COMPILE_CORES}" ]; then
 		CORES_AVAILABLE=${COMPILE_CORES}
 	else

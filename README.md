@@ -3,8 +3,10 @@
 This Docker will download and install the version of OpenTTD that you enter in the variable 'GAME_VERSION' (if you define 'latest' it will always pull the latest build).
 
 
-CONSOLE: If you want to connect to the console open a Terminal and type in 'screen -xS OpenTTD' (without quotes).
+WEB CONSOLE: You can connect to the OpenTTD console by opening your browser and go to HOSTIP:9015 (eg: 192.168.1.1:9015) or click on WebUI on the Docker page within Unraid.
+
 Compile Note: Assigning fewer cores for compiling will result in slower startup on the first start up and updates, RECOMMENDED: leave the 'Compile Cores' blank to use all available cores).
+
 Update Notice: If there is a newer version if set to 'latest' simply restart the container to update it to the latest version. If you want to update from an older build simply set the new build number or set to latest. You can also downgrade to another version.
 
 
@@ -29,6 +31,7 @@ Update Notice: If there is a newer version if set to 'latest' simply restart the
 docker run --name OpenTTD -d \
     -p 3979:3979/tcp \
     -p 3979:3979/udp \
+    -p 9015:8080/tcp \
     --env 'GAME_PARAMS=' \
     --env 'GAME_VERSION=latest' \
     --env 'GFX_PK_V=latest' \

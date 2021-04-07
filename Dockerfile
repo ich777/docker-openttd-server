@@ -6,11 +6,17 @@ RUN apt-get update && \
 	apt-get -y install --no-install-recommends unzip xz-utils curl liblzma-dev build-essential libsdl1.2-dev zlib1g-dev liblzo2-dev timidity dpatch libfontconfig-dev libicu-dev screen cmake && \
 	rm -rf /var/lib/apt/lists/*
 
+RUN wget -O /tmp/gotty.tar.gz https://github.com/yudai/gotty/releases/download/v1.0.1/gotty_linux_amd64.tar.gz && \
+	tar -C /usr/bin/ -xvf /tmp/gotty.tar.gz && \
+	rm -rf /tmp/gotty.tar.gz
+
 ENV DATA_DIR="/serverdata"
 ENV SERVER_DIR="${DATA_DIR}/serverfiles"
 ENV GAME_PARAMS="template"
 ENV GAME_PORT=3979
 ENV GAME_VERSION="latest"
+ENV ENABLE_WEBCONSOLE="true"
+ENV GOTTY_PARAMS="-w --title-format OpenTTD"
 ENV COMPILE_CORES=""
 ENV GFX_PK_V="latest"
 ENV UMASK=000

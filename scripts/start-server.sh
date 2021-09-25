@@ -2,7 +2,7 @@
 CUR_V="$(find ${SERVER_DIR} -name installed_v_* | cut -d "_" -f3)"
 if [ "${GAME_VERSION}" = "latest" ]; then
 	echo "---Getting latest OpenTTD build version...---"
-	LAT_V="$(curl -s https://cdn.openttd.org/openttd-releases/latest.yaml | grep "version:" | cut -d ' ' -f3)"
+	LAT_V="$(curl -s https://cdn.openttd.org/openttd-releases/latest.yaml | grep -B1 "stable" | grep "version:" | cut -d ' ' -f3)"
 	echo "---Latest OpenTTD build version is: $LAT_V---"
 	INSTALL_V=$LAT_V
 	if [ -z $LAT_V ]; then

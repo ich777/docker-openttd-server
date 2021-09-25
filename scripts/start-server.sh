@@ -47,7 +47,7 @@ if [ ! -f ${SERVER_DIR}/games/openttd ]; then
 	echo "-------------------------------------"
 	sleep 15
 	cd ${SERVER_DIR}
-	if wget -q -nc --show-progress --progress=bar:force:noscroll -O installed_v_$INSTALL_V https://cdn.openttd.org/openttd-releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz ; then
+	if wget -q -nc --show-progress --progress=bar:force:noscroll -O installed_v_$INSTALL_V https://cdn.openttd.org/openttd-releases/$INSTALL_V/openttd-$INSTALL_V-linux-generic-amd64.tar.xz ; then
 		echo "---Successfully downloaded OpenTTD v$INSTALL_V---"
 	else
 		echo "---Can't download OpenTTD v$INSTALL_V putting server into sleep mode---"
@@ -87,7 +87,7 @@ elif [ "$INSTALL_V" != "$CUR_V" ]; then
 	rm installed_v_$CUR_V
 	rm -R games
 	rm -R share
-	if wget -q -nc --show-progress --progress=bar:force:noscroll -O installed_v_$INSTALL_V https://cdn.openttd.org/openttd-releases/$INSTALL_V/openttd-$INSTALL_V-source.tar.xz ; then
+	if wget -q -nc --show-progress --progress=bar:force:noscroll -O installed_v_$INSTALL_V https://cdn.openttd.org/openttd-releases/$INSTALL_V/openttd-$INSTALL_V-linux-generic-amd64.tar.xz ; then
 		echo "---Successfully downloaded OpenTTD v$INSTALL_V---"
 	else
 		echo "---Can't download OpenTTD v$INSTALL_V putting server into sleep mode---"

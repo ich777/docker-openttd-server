@@ -36,6 +36,10 @@ else
 	echo "---Manually set OpenGFX version to ${GFX_PK_V}---"
 fi
 
+if [ ! -s ${SERVER_DIR}/installed_v_$LAT_V ]; then
+  rm -rf ${SERVER_DIR}/installed_v_$LAT_V
+fi
+
 echo "---Version Check---"
 if [ ! -f ${SERVER_DIR}/games/openttd ]; then
 	echo

@@ -64,13 +64,14 @@ if [ ! -f ${SERVER_DIR}/openttd ]; then
     sleep infinity
   fi
   tar --strip-components=1 -xf installed_v_$LAT_V -C ${SERVER_DIR}/
-elif [ "$INSTALL_V" != "$CUR_V" ]; then
+elif [ "$LAT_V" != "$CUR_V" ]; then
   echo
-  echo "-------------------------------------------------"
-  echo "-----Version missmatch, installing v$LAT_V-----"
-  echo "-------------------------------------------------"
+  echo "--------------------------------------------------------------------------"
+  echo "---Version missmatch! Installed v$CUR_V, installing v$LAT_V!---"
+  echo "--------------------------------------------------------------------------"
   echo
   cd ${SERVER_DIR}
+  rm -rf ${SERVER_DIR}/installed_v_*
   if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${SERVER_DIR}/installed_v_${LAT_V} https://cdn.openttd.org/openttd-releases/${LAT_V}/openttd-${LAT_V}-linux-generic-amd64.tar.xz ; then
     echo "---Successfully downloaded OpenTTD v$LAT_V---"
   else

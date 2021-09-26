@@ -1,6 +1,4 @@
 #!/bin/bash
-echo "---Container under construction---"
-sleep infinity
 CUR_V="$(find ${SERVER_DIR} -name installed_v_* | cut -d "_" -f3)"
 if [ "${GAME_VERSION}" = "latest" ]; then
   echo "---Trying to get latest stable OpenTTD version...---"

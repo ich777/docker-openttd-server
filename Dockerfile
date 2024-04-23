@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.authors="admin@minenet.at"
 LABEL org.opencontainers.image.source="https://github.com/ich777/docker-openttd-server"
 
 RUN apt-get update && \
-	apt-get -y install --no-install-recommends unzip xz-utils curl screen && \
+	apt-get -y install --no-install-recommends unzip xz-utils curl screen libgomp1 libglib2.0-0 && \
 	rm -rf /var/lib/apt/lists/*
 
 RUN wget -O /tmp/gotty.tar.gz https://github.com/yudai/gotty/releases/download/v1.0.1/gotty_linux_amd64.tar.gz && \
